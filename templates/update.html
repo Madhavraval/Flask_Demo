@@ -1,8 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-<h2>Update Profile</h2>
-<form action="/update" method="POST">
-    <input type="text" name="name" value="{{ user[1] }}" required>
-    <input type="text" name="phone" value="{{ user[3] }}" required>
-    <input type="date" name="dob" value="{{ user[4] }}" required>
-    <button type="submit">Update</button>
-</form>
+        /* Card Style */
+        .container {
+            background: white;
+            padding: 25px;
+            width: 450px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Cancel (X) Button */
+        .cancel-btn {
+            position: absolute;
+            top: 0px;
+            right: 5px;
+            font-size: 22px;
+            color: #ff4d4d;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            background: none;
+            font-weight: bold;
+        }
+
+        .cancel-btn:hover {
+            color: white;
+            background: red;
+            border-radius: 0%;
+            padding: 0px;
+            transform: scale(0.3s);
+        }
+
+        h2, h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: left;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 8px rgba(118, 75, 162, 0.5);
+        }
+
+        /* Update Button */
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background: linear-gradient(90deg, #ff758c, #ff7eb3);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Cancel (X) Button -->
+    <button class="cancel-btn" onclick="window.location.href='/dashboard_user'">X</button>
+
+    <h2>Update Profile</h2>
+    <form action="/update" method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" value="{{ user[1] }}" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ user[2] }}" required>
+
+        <label>Phone:</label>
+        <input type="text" name="phone" value="{{ user[3] }}" required>
+
+        <label>Date of Birth:</label>
+        <input type="date" name="dob" value="{{ user[4] }}" required>
+
+        <h3>Change Password (Optional)</h3>
+        <label>Old Password:</label>
+        <input type="password" name="old_password">
+
+        <label>New Password:</label>
+        <input type="password" name="new_password">
+
+        <label>Re-enter New Password:</label>
+        <input type="password" name="confirm_password">
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+</body>
+</html>
