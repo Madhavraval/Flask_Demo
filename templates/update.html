@@ -4,133 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* General Page Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: url(bg.jpg) no-repeat;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            overflow: hidden;
         }
 
-        /* Card Style */
         .container {
-            background: white;
-            padding: 25px;
-            width: 450px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: relative;
+            width: 350px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-out;
         }
 
-        /* Cancel (X) Button */
-        .cancel-btn {
-            position: absolute;
-            top: 0px;
-            right: 5px;
-            font-size: 22px;
-            color: #ff4d4d;
-            cursor: pointer;
-            transition: 0.3s;
-            border: none;
-            background: none;
-            font-weight: bold;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        .cancel-btn:hover {
-            color: white;
-            background: red;
-            border-radius: 0%;
-            padding: 0px;
-            transform: scale(0.3s);
-        }
-
-        h2, h3 {
+        h2 {
             color: #333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
         }
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: left;
-            color: #555;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .input-group {
+            position: relative;
+            margin: 15px 0;
         }
 
         input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            outline: none;
-            transition: 0.3s;
-            font-size: 16px;
+            width: 90%;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
         }
 
         input:focus {
-            border-color: #764ba2;
-            box-shadow: 0 0 8px rgba(118, 75, 162, 0.5);
+            border-color: #ff758c;
+            box-shadow: 0px 0px 15px rgba(255, 117, 140, 0.5);
+            outline: none;
         }
 
-        /* Update Button */
         button {
-            margin-top: 20px;
-            width: 100%;
-            background: linear-gradient(90deg, #ff758c, #ff7eb3);
+            background: linear-gradient(135deg, #1f1d76, #1f1d76);
             color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             font-size: 16px;
             font-weight: bold;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         button:hover {
-            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            background: linear-gradient(135deg, #ff5a7a, #ff3d6a);
             transform: scale(1.05);
         }
 
+        .cancel-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .cancel-btn:hover {
+            background: #0056b3;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Cancel (X) Button -->
-    <button class="cancel-btn" onclick="window.location.href='/dashboard_user'">X</button>
-
     <h2>Update Profile</h2>
     <form action="/update" method="POST">
-        <label>Name:</label>
-        <input type="text" name="name" value="{{ user[1] }}" required>
-
-        <label>Email:</label>
-        <input type="email" name="email" value="{{ user[2] }}" required>
-
-        <label>Phone:</label>
-        <input type="text" name="phone" value="{{ user[3] }}" required>
-
-        <label>Date of Birth:</label>
-        <input type="date" name="dob" value="{{ user[4] }}" required>
-
+        <div class="input-group">
+            <input type="text" name="name" value="{{ user[1] }}" placeholder="Enter Name" required>
+        </div>
+        <div class="input-group">
+            <input type="email" name="email" value="{{ user[2] }}" placeholder="Enter Email" required>
+        </div>
+        <div class="input-group">
+            <input type="text" name="phone" value="{{ user[3] }}" placeholder="Enter Phone" required>
+        </div>
+        <div class="input-group">
+            <input type="date" name="dob" value="{{ user[4] }}" required>
+        </div>
         <h3>Change Password (Optional)</h3>
-        <label>Old Password:</label>
-        <input type="password" name="old_password">
-
-        <label>New Password:</label>
-        <input type="password" name="new_password">
-
-        <label>Re-enter New Password:</label>
-        <input type="password" name="confirm_password">
-
+        <div class="input-group">
+            <input type="password" name="old_password" placeholder="Old Password">
+        </div>
+        <div class="input-group">
+            <input type="password" name="new_password" placeholder="New Password">
+        </div>
+        <div class="input-group">
+            <input type="password" name="confirm_password" placeholder="Re-enter New Password">
+        </div>
         <button type="submit">Update</button>
+        <button type="button" class="cancel-btn" onclick="window.location.href='/dashboard_user'">Cancel</button>
     </form>
 </div>
 

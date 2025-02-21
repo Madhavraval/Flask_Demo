@@ -8,7 +8,7 @@ app.secret_key = 'your_secret_key'
 # MySQL Config
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Madhav@123'
+app.config['MYSQL_PASSWORD'] = 'Varun@@18+'
 app.config['MYSQL_DB'] = 'flask_crud'
 mysql = MySQL(app)
 
